@@ -7,6 +7,10 @@
       function captchaCallback(g-recaptcha-response resp) {
         document.getElementById("result").innerHTML = resp.success;
       }
+      function onSubmit() {
+        var resp = grecaptcha.getResponse.to_str();
+        document.getElementById("verify").innerHTML = resp;
+      }
       </script>
    </head>
    <body>
@@ -19,10 +23,10 @@
                   <li><label for="input2">Last Name</label><input id="input2" name="input2" type="text" ></li>
                   <li>
                      <div class="recaptcha-error">
-                        <div class="g-recaptcha" data-sitekey="6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW" data-callback='captchaCallback'></div>
+                        <div class="g-recaptcha" data-sitekey="6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW" data-callback="captchaCallback"></div>
                      </div>
                   </li>
-                  <li><input type="submit" value="Submit"/></li>
+                  <li><input type="submit" value="Submit" onclick="onSubmit"/></li>
                </ul>
             </fieldset>
          </form>
@@ -31,6 +35,8 @@
         Result is:<br>
         <p id="result"></p>
       </div>
+      Verify<br>
+      <p id="verify"></p>
    </body>
 </html>
 
