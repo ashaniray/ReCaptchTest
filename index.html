@@ -1,16 +1,20 @@
 <html>
    <head>
       <title>ReCAPTCHA demo</title>
+      <script src='https://code.jquery.com/jquery-1.11.3.min.js' async defer></script>
       <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 
       <script>
       function captchaCallback(g-recaptcha-response resp) {
         document.getElementById("result").innerHTML = resp.success;
       }
-      function onSubmit() {
-        var resp = grecaptcha.getResponse.to_str();
-        document.getElementById("verify").innerHTML = resp;
-      }
+      $(function(){
+          $('#btn-submit').click(e) {
+            e.preventDefault();
+            var resp = grecaptcha.getResponse.to_str();
+            document.getElementById("verify").innerHTML = resp;
+          }
+        });
       </script>
    </head>
    <body>
@@ -26,7 +30,7 @@
                         <div class="g-recaptcha" data-sitekey="6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW" data-callback="captchaCallback"></div>
                      </div>
                   </li>
-                  <li><input type="submit" value="Submit" onclick="onSubmit"/></li>
+                  <li><input type="submit" value="Submit" id="bnt-submit"/></li>
                </ul>
             </fieldset>
          </form>
