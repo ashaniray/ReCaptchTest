@@ -8,13 +8,13 @@
       function captchaCallback(resp) {
         document.getElementById("result").innerHTML = resp.success;
       }
-      $(function(){
-          $('#btn-submit').click(e) {
+      </script>
+      <script>
+          $('#btn-submit').click(function(e) {
             e.preventDefault();
             var resp = grecaptcha.getResponse.to_str();
             document.getElementById("verify").innerHTML = resp;
-          }
-        });
+          });
       </script>
    </head>
    <body>
