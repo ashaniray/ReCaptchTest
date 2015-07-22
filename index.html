@@ -2,6 +2,12 @@
    <head>
       <title>ReCAPTCHA demo</title>
       <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+
+      <script>
+      function captchaCallback(g-recaptcha-response resp) {
+        document.getElementById("result").innerHTML = resp.success;
+      }
+      </script>
    </head>
    <body>
       <div class="sample-form">
@@ -13,14 +19,17 @@
                   <li><label for="input2">Last Name</label><input id="input2" name="input2" type="text" ></li>
                   <li>
                      <div class="recaptcha-error">
-                        <div class="g-recaptcha" data-sitekey="6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW" ></div>
-                        <div class="recaptcha-error-message">Please verify that you are not a robot.</div>
+                        <div class="g-recaptcha" data-sitekey="6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW" data-callback='captchaCallback'></div>
                      </div>
                   </li>
-                  <li><input type="submit" value="Submit" /></li>
+                  <li><input type="submit" value="Submit"/></li>
                </ul>
             </fieldset>
          </form>
+      </div>
+      <div>
+        Result is:<br>
+        <p id="result"></p>
       </div>
    </body>
 </html>
