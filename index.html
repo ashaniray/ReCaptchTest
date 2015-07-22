@@ -1,22 +1,29 @@
-<html>
-  <head>
-      <title>reCAPTCHA demo: Explicit render after an onload callback</title>
-          <script type="text/javascript">
-                var onloadCallback = function() {
-                          grecaptcha.render('html_element', {
-                                      'sitekey' : '6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW'
-                                              });
-                                };
-                                    </script>
-                                      </head>
-                                        <body>
-                                            <form action="?" method="POST">
-                                                  <div id="html_element"></div>
-                                                        <br>
-                                                              <input type="submit" value="Submit">
-                                                                  </form>
-                                                                      <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-                                                                              async defer>
-                                                                                  </script>
-                                                                                    </body>
-                                                                                    </html>
+CTYPE HTML>
+<html dir="ltr">
+   <head>
+      <title>ReCAPTCHA demo</title>
+      <script src='https://www.google.com/recaptcha/api.js'></script>
+   </head>
+   <body>
+      <div class="sample-form">
+         <form method="POST">
+            <fieldset>
+               <legend>Sample Form with ReCAPTCHA</legend>
+               <ul>
+                  <li><label for="input1">First name</label><input id="input1" name="input1" type="text"></li>
+                  <li><label for="input2">Last Name</label><input id="input2" name="input2" type="text" ></li>
+                  <li>
+                     <div class="recaptcha-error">
+                        <!-- BEGIN: ReCAPTCHA implementation example. -->
+                        <div class="g-recaptcha" data-sitekey="6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW"></div>
+                        <div class="recaptcha-error-message">Please verify that you are not a robot.</div>
+                     </div>
+                  </li>
+                  <li><input type="submit" value="Submit" /></li>
+               </ul>
+            </fieldset>
+         </form>
+      </div>
+   </body>
+</html>
+
