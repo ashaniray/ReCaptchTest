@@ -3,23 +3,24 @@
       <title>ReCAPTCHA demo</title>
       <script src='https://code.jquery.com/jquery-1.11.3.min.js' async defer></script>
       <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+      <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 
-      <script>
-      function captchaCallback(resp) {
-        document.getElementById("result").innerHTML = resp.success;
-      }
-      </script>
-      <script>
-        function onSumbit() {    
-            var resp = grecaptcha.getResponse.to_str();
-            document.getElementById("verify").innerHTML = resp;
-            false;
-          };
-      </script>
+    <script>
+  var onloadCallback = function() {
+    grecaptcha.render('html_element', {
+      'sitekey' : '6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW',
+      'callback' : 'correctCaptcha'
+    });
+
+var correctCaptcha = function(response) {
+    alert(response);
+};
+  };
+    </script>
    </head>
    <body>
       <div class="sample-form">
-         <form method="GET" onsubmit="return onSubmit()">
+         <form method="GET">
             <fieldset>
                <legend>Sample Form with ReCAPTCHA</legend>
                <ul>
@@ -27,7 +28,7 @@
                   <li><label for="input2">Last Name</label><input id="input2" name="input2" type="text" ></li>
                   <li>
                      <div class="recaptcha-error">
-                        <div class="g-recaptcha" data-sitekey="6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW" data-callback="captchaCallback"></div>
+                        <div class="g-recaptcha" data-sitekey="6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW"></div>
                      </div>
                   </li>
                   <li><input type="submit" value="Submit" /></li>
@@ -35,12 +36,7 @@
             </fieldset>
          </form>
       </div>
-      <div>
-        Result is:<br>
-        <p id="result"></p>
-      </div>
-      Verify<br>
-      <p id="verify"></p>
+     <div id='html_element'></div>
    </body>
 </html>
 
