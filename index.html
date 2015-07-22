@@ -5,7 +5,7 @@
       <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 
       <script>
-      function captchaCallback(g-recaptcha-response resp) {
+      function captchaCallback(resp) {
         document.getElementById("result").innerHTML = resp.success;
       }
       $(function(){
