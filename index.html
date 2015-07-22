@@ -10,16 +10,16 @@
       }
       </script>
       <script>
-          $('#btn-submit').click(function(e) {
-            e.preventDefault();
+        function onSumbit() {    
             var resp = grecaptcha.getResponse.to_str();
             document.getElementById("verify").innerHTML = resp;
-          });
+            false;
+          };
       </script>
    </head>
    <body>
       <div class="sample-form">
-         <form method="GET">
+         <form method="GET" onsubmit="return onSubmit()">
             <fieldset>
                <legend>Sample Form with ReCAPTCHA</legend>
                <ul>
@@ -30,7 +30,7 @@
                         <div class="g-recaptcha" data-sitekey="6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW" data-callback="captchaCallback"></div>
                      </div>
                   </li>
-                  <li><input type="submit" value="Submit" id="bnt-submit"/></li>
+                  <li><input type="submit" value="Submit" /></li>
                </ul>
             </fieldset>
          </form>
