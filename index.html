@@ -8,9 +8,11 @@
   var onloadCallback = function() {
     grecaptcha.render('html_element', {
       'sitekey' : '6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW',
-      'callback' : 'correctCaptcha'
+      'data-callback' : 'correctCaptcha'
     });
+</script>
 
+<script>
 var correctCaptcha = function(response) {
     alert(response);
 };
