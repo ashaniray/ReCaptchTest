@@ -1,43 +1,53 @@
 <html>
-   <head>
-      <title>ReCAPTCHA demo</title>
-      <script src='https://code.jquery.com/jquery-1.11.3.min.js' async defer></script>
-      <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
-
-    <script>
-  var onloadCallback = function() {
-    grecaptcha.render('html_element', {
-      'sitekey' : '6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW',
-      'callback' : 'correctCaptcha'
-    });
-</script>
-
-<script>
-var correctCaptcha = function(response) {
-    alert(response);
-};
-  };
+  <head>
+    <title>reCAPTCHA demo: Explicit render for multiple widgets</title>
+    <script type="text/javascript">
+      var verifyCallback = function(response) {
+        alert(response);
+      };
+      var widgetId1;
+      var widgetId2;
+      var onloadCallback = function() {
+        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
+        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
+        widgetId1 = grecaptcha.render('example1', {
+          'sitekey' : '6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW',
+          'theme' : 'light'
+        });
+        widgetId2 = grecaptcha.render(document.getElementById('example2'), {
+          'sitekey' : '6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW'
+        });
+        grecaptcha.render('example3', {
+          'sitekey' : '6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW',
+          'callback' : verifyCallback,
+          'theme' : 'dark'
+        });
+      };
     </script>
-   </head>
-   <body>
-      <div class="sample-form">
-         <form method="GET">
-            <fieldset>
-               <legend>Sample Form with ReCAPTCHA</legend>
-               <ul>
-                  <li><label for="input1">First name</label><input id="input1" name="input1" type="text"></li>
-                  <li><label for="input2">Last Name</label><input id="input2" name="input2" type="text" ></li>
-                  <li>
-                     <div class="recaptcha-error">
-                        <div class="g-recaptcha" data-sitekey="6LdTJwoTAAAAACB_61K0R4mnuyx9liBaj3ryVJRW"></div>
-                     </div>
-                  </li>
-                  <li><input type="submit" value="Submit" /></li>
-               </ul>
-            </fieldset>
-         </form>
-      </div>
-     <div id='html_element'></div>
-   </body>
+  </head>
+  <body>
+    <!-- The g-recaptcha-response string displays in an alert message upon submit. -->
+    <form action="javascript:alert(grecaptcha.getResponse(widgetId1));">
+      <div id="example1"></div>
+      <br>
+      <input type="submit" value="getResponse">
+    </form>
+    <br>
+    <!-- Resets reCAPTCHA widgetId2 upon submit. -->
+    <form action="javascript:grecaptcha.reset(widgetId2);">
+      <div id="example2"></div>
+      <br>
+      <input type="submit" value="reset">
+    </form>
+    <br>
+    <!-- POSTs back to the page's URL upon submit with a g-recaptcha-response POST parameter. -->
+    <form action="?" method="POST">
+      <div id="example3"></div>
+      <br>
+      <input type="submit" value="Submit">
+    </form>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>
+  </body>
 </html>
-
